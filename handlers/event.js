@@ -12,7 +12,6 @@ module.exports.setup = () => {
         console.log(`loading ${eventfiles.length} events`)
         for(const file of eventfiles){
             const eventfile = require(`../events/${file}`)
-            //bot.commands.set(commandfile.name, commandfile)
             
             console.log(`loaded event '${eventfile.name}'`)
         }

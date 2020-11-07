@@ -1,8 +1,4 @@
-module.exports.run = async (bot, message, args) => {
-
-}
-
-module.exports.help = {
+module.exports = {
     name: "notfound",
     aliases: ["notfound"],
     description: "informs user the command does not exist",
@@ -14,4 +10,7 @@ module.exports.help = {
     permissions:[],
     requredRoles:[],
     permissionError: "you do not have perms to use this",
+    async execute(bot, message, args){
+        message.channel.send("that command does not exist")
+    },
 }

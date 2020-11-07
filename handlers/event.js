@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-module.exports = () => {
+module.exports.setup = () => {
 
     fs.readdir('./events', (err, files) => {
         if(err) console.log(err);

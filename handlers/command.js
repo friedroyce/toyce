@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-module.exports = (bot) => {
+module.exports.setup = (bot) => {
 
     fs.readdir('./commands', (err, files) => {
         if(err) console.log(err);

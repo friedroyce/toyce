@@ -1,14 +1,14 @@
-const Discord = require('discord.js')
+const discord = require('discord.js')
+const config = require('./config.json')
 
-const toyce = new Discord.Client()
-const prefix = '>'
+const bot = new discord.Client()
 
-toyce.login(`NTc4MjI3OTE5MTE4MjcwNDY3.XNwitg.HAX7UHFuLzOKXobalpd4dxGkEUA`)
+bot.login(config.token)
 
-toyce.once('ready', () => {
+bot.once('ready', () => {
     console.log('toyce is online!')
 })
 
-toyce.on('message', (message) => {
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+bot.on('message', (message) => {
+    if(!message.content.startsWith(config.prefix) || message.author.bot) return;
 })

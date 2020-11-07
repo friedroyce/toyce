@@ -1,4 +1,4 @@
-module.exports.run = async (toyce, message, args) => {
+module.exports.run = async (bot, message, args) => {
 
 }
 

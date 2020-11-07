@@ -6,12 +6,32 @@ const notfound = require('./commands/notfound')
 const bot = new discord.Client()
 bot.commands = new discord.Collection()
 
-const cmds = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
-for(const file of cmds){
-    const cmd = require(`./commands/${file}`)
-    bot.commands.set(cmd.name, cmd)
-    console.log(`loaded command '${cmd.name}'`)
-}
+//load commands
+// const commandfiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+// for(const file of commandfiles){
+//     const commandfile = require(`./commands/${file}`)
+//     bot.commands.set(commandfile.name, commandfile)
+    
+//     console.log(`loaded command '${commandfile.name}'`)
+// }
+
+fs.readdir('./commands', (err, files) => {
+    if(err) console.log(err);
+
+    const commandfiles = files.filter(file => file.endsWith('.js'))
+
+    if(commandfiles.length <= 0) return console.log("there are no commands to load")
+    
+    console.log(`loading ${commandfiles.length} commands`)
+    for(const file of commandfiles){
+        const commandfile = require(`./commands/${file}`)
+        bot.commands.set(commandfile.name, commandfile)
+        
+        console.log(`loaded command '${commandfile.name}'`)
+    }
+
+})
+
 
 //when toyce goes online
 bot.once('ready', () => {

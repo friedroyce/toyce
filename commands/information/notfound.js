@@ -1,16 +1,9 @@
 module.exports = {
-    name: "notfound",
-    aliases: ["notfound"],
-    description: "informs user the command does not exist",
-    
-    requiredArgs: "none",
-    minArgs: 0,
-    maxArgs: null,
-
-    permissions:[],
-    requredRoles:[],
-    permissionError: "you do not have perms to use this",
+    name: 'notfound',
+    description: 'informs user the command does not exist',
+    category: 'information',
+    aliases: ['notfound'],
     run: async (bot, message, args) => {
-        message.channel.send("that command does not exist")
+        message.channel.send('that command does not exist')
     },
 }

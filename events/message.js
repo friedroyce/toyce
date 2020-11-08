@@ -15,10 +15,10 @@ bot.on('message', async (message) => {
     const command = bot.commands.get(cmdName)
         || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName))
 
-    if(!command) return bot.commands.get('notfound').execute(bot, message, args)
+    if(!command) return bot.commands.get('notfound').run(bot, message, args)
 
     try{
-        command.execute(bot, message, args)
+        command.run(bot, message, args)
     }
     catch(e){
         message.channel.send("an error occured executing the command")

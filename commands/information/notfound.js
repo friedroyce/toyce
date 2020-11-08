@@ -10,7 +10,7 @@ module.exports = {
     permissions:[],
     requredRoles:[],
     permissionError: "you do not have perms to use this",
-    async execute(bot, message, args){
+    run: async (bot, message, args) => {
         message.channel.send("that command does not exist")
     },
 }

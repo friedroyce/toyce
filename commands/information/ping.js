@@ -10,7 +10,7 @@ module.exports = {
     permissions:[],
     requredRoles:[],
     permissionError: "you do not have perms to use this",
-    async execute(bot, message, args){
+    run: async (bot, message, args) => {
         message.channel.send(`...`).then(msg => {
             var pong = ["pong", "ka-pong", "ba-da-pong", "bada-pong"]
             const ping = msg.createdTimestamp - message.createdTimestamp
@@ -18,5 +18,5 @@ module.exports = {
 
             msg.edit(`${pong[i]} (${ping}ms)`)
         })
-    },
+    }
 }

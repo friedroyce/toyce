@@ -9,7 +9,6 @@ module.exports = {
     run: async (bot, message, args) => {
 
         let songName = args.join()
-
         let {body} = await superagent
                             .get(`https://some-random-api.ml/lyrics`)
                             .query({title: songName})
@@ -24,5 +23,6 @@ module.exports = {
         .setDescription(body.lyrics)
         .setFooter(`powered by genius`)
         message.channel.send(embed)
+        
     }
 }

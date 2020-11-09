@@ -19,6 +19,7 @@
   "dependencies": {
     "booru": "^2.4.0",
     "discord.js": "^12.4.1",
-    "imageapi.js": "^1.0.19"
+    "imageapi.js": "^1.0.19",
+    "some-random-api": "^2.0.0"
   }
 }

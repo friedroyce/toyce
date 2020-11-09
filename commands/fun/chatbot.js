@@ -1,5 +1,5 @@
 const discord = require('discord.js')
-const {api} = require('some-random-api')
+const superagent = require('superagent')
 
 module.exports = {
     name: 'chatbot',
@@ -9,9 +9,11 @@ module.exports = {
     run: async (bot, message, args) => {
 
         let msg = args.join()
+        let {body} = await superagent
+                            .get(`https://some-random-api.ml/chatbot`)
+                            .query({message: msg})
 
-        let chatbot = await api.other.chatbot(msg)
-        
-        message.channel.send(chatbot.response)
+        message.channel.send(body.response)
+
     }
 }

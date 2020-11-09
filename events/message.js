@@ -7,21 +7,29 @@ module.exports = {
 }
 
 bot.on('message', async (message) => {
-    if(!message.content.startsWith(prefix) || message.author.bot) return
-
     const args = message.content.slice(prefix.length).split(" ")
-    const cmdName = args.shift().toLowerCase()
+    
 
-    const command = bot.commands.get(cmdName)
-        || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName))
+    if(message.content.startsWith(prefix) && !message.author.bot) {
+        const cmdName = args.shift().toLowerCase()
+        console.log('not mentioned')
 
-    if(!command) return 
+        const command = bot.commands.get(cmdName)
+            || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName))
 
-    try{
+        if(!command) return 
+
+        try{
+            command.run(bot, message, args)
+        }
+        catch(e){
+            message.channel.send("an error occured executing the command")
+            console.log(e)
+        }
+    }
+    else if (message.content.search('774906241348403211') >= 0){
+        const command = bot.commands.get('chatbot')
         command.run(bot, message, args)
     }
-    catch(e){
-        message.channel.send("an error occured executing the command")
-        console.log(e)
-    }
+
 })

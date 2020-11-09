@@ -12,8 +12,6 @@ bot.on('message', async (message) => {
 
     if(message.content.startsWith(prefix) && !message.author.bot) {
         const cmdName = args.shift().toLowerCase()
-        console.log('not mentioned')
-
         const command = bot.commands.get(cmdName)
             || bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(cmdName))
 

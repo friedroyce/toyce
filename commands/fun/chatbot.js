@@ -1,8 +1,6 @@
 const discord = require('discord.js')
 const {api} = require('some-random-api')
 
-
-
 module.exports = {
     name: 'chatbot',
     description: 'chatbot',

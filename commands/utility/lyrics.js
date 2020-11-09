@@ -1,5 +1,5 @@
 const discord = require('discord.js')
-const { api } = require('some-random-api');
+const superagent = require('superagent')
 
 module.exports = {
     name: 'lyrics',
@@ -10,22 +10,19 @@ module.exports = {
 
         let songName = args.join()
 
-        // const sraClient = new somerandom.SRAClient();
+        let {body} = await superagent
+                            .get(`https://some-random-api.ml/lyrics`)
+                            .query({title: songName})
 
-        // let song = await sraClient.fetch('/lyrics', {title: songName})
-
-        let song = await api.other.lyrics(songName)
-
-        console.log(song.lyrics.length)
-
-        if(song.lyrics.length > 2048)
-            return message.channel.send(`song lyrics exceeds 2000 characters`)
+        if(body.lyrics.length > 2048)
+            return message.channel.send(`song lyrics exceeds 2048 characters`)
         
         const embed = new discord.MessageEmbed()
-        .setTitle(song.title)
-        .setDescription(song.lyrics)
-        .setFooter(`source: ${song.links.genius}`)
         .setColor('RANDOM')
+        .setTitle(body.title)
+        .setURL(body.links.genius)
+        .setDescription(body.lyrics)
+        .setFooter(`powered by genius`)
         message.channel.send(embed)
     }
 }

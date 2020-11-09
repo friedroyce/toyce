@@ -30,22 +30,7 @@ module.exports = {
         var post
         var posts
         var count = 0
-        var sites = [
-            'dp', 
-            'e6', 
-            'e9', 
-            'gb', 
-            'hh', 
-            'kc', 
-            'kn', 
-            'rb', 
-            'pa', 
-            'r34', 
-            'sb', 
-            'tb', 
-            'xb', 
-            'yd'
-        ]
+        var sites = [ 'dp', 'e6', 'e9', 'gb', 'hh', 'kc', 'kn', 'rb', 'pa', 'r34', 'sb', 'tb', 'xb', 'yd' ]
 
         if(command !== 'booru' && command !== 'hentai' && command !== 'h' && command !== 'b') {
             site = command

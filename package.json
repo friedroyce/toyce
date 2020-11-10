@@ -2,7 +2,7 @@
   "name": "toyce",
   "version": "1.0.0",
   "description": "discord bot",
-  "main": "toyce.js",
+  "main": "./src/toyce.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

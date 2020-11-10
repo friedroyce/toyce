@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports.setup = (bot) => {
 
-    const commandfiles = findNested('./commands', '.js')
+    const commandfiles = findNested('./src/commands', '.js')
 
     if(commandfiles.length <= 0) return console.log("there are no commands to load")
 

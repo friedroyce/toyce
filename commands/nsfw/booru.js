@@ -1,12 +1,13 @@
 const booru = require('booru')
 const {prefix} = require('../../config.json')
+const boorus = require('../../data/boorus.json')
 
 module.exports = {
     name: 'booru',
     description: 'sends an image from booru sites',
     category: 'nsfw',
     aliases: [
-        'booru', 'b', 'hentai', 'h',
+        'booru', 'b', 'hentai', 'h', 'nsfw', 'sfw',
         'danbooru.donmai.us', 'db', 'dan', 'danbooru',
         'derpibooru.org', 'dp', 'derp', 'derpi', 'derpibooru',
         'e621.net', 'e6', 'e621',
@@ -26,25 +27,62 @@ module.exports = {
     run: async (bot, message, args) => {
 
         const command = message.content.slice(prefix.length).split(" ").shift().toLowerCase()
-        var site = 'rule34'
         var post
-        var posts
         var count = 0
-        var sites = [ 'dp', 'e6', 'e9', 'gb', 'hh', 'kc', 'kn', 'rb', 'pa', 'r34', 'sb', 'tb', 'xb', 'yd' ]
 
-        if(command !== 'booru' && command !== 'hentai' && command !== 'h' && command !== 'b') {
-            site = command
-            posts = await booru.search(site, args, { limit: 5, random: true })
+        
+        if(command !== 'booru' && command !== 'hentai' && command !== 'h' && command !== 'b' && command !== 'nsfw' && command !== 'sfw') {
+            let site = command
+
+            if(args.length >= 2 || site === 'danbooru.donmai.us')
+                return message.channel.send('can only search one tag for this site')
+
+            let posts = await booru.search(site, args, { limit: 5, random: true })
             post = posts[Math.floor(Math.random()*(posts.length))]
             if(!post) return message.channel.send('no posts found :(')
         }
         else while(!post){
-            site = sites[Math.floor(Math.random()*(sites.length))]
+
+            // var categories
+            // var category
+            var sites
+
+            if((command === 'hentai' || command === 'h' || command === 'nsfw')
+                || ((command === 'booru' || command === 'b') && args[0] === 'nsfw')){
+                sites = boorus['nsfw']
+
+                if(args[0] === 'nsfw')
+                    args.shift()
+            }
+            else if(command === 'sfw' || ((command === 'booru' || command === 'b') && args[0] === 'sfw')){
+                sites = boorus['sfw']
+
+                if(args[0] === 'nsfw')
+                    args.shift()
+            }
+            else{
+                let categories = Object.keys(boorus)
+                let category = categories[Math.floor(Math.random()*(categories.length))]
+                sites = boorus[category]
+            }
+            let site = sites[Math.floor(Math.random()*(sites.length))].domain
+            let tagcount = args.length
+
             console.log(site)
-            posts = await booru.search(site, args, { limit: 5, random: true })
-            post = posts[Math.floor(Math.random()*(posts.length))]
-            count++
-            if(count > 30) return message.channel.send('no posts found :(')
+            console.log(args)
+            console.log(count)
+            console.log(args.length)
+            console.log(args.length < 1)
+            console.log(site !== 'danbooru.donmai.us')
+
+            if(args.length < 2 || site !== 'danbooru.donmai.us'){
+                let tags = args.slice(0, tagcount)
+                posts = await booru.search(site, tags, { limit: 5, random: true })
+                post = posts[Math.floor(Math.random()*(posts.length))]
+                count++
+                if(count > 30) return message.channel.send('no posts found :(')
+            }
+
         }
         message.channel.send(post.fileUrl)
 

@@ -2,7 +2,7 @@ const fs = require('fs')
 
 module.exports.setup = () => {
 
-    fs.readdir('./src/events', (err, files) => {
+    fs.readdir('./events', (err, files) => {
         if(err) console.log(err);
     
         const eventfiles = files.filter(file => file.endsWith('.js'))

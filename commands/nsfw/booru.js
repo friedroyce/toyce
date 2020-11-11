@@ -68,13 +68,6 @@ module.exports = {
             let site = sites[Math.floor(Math.random()*(sites.length))].domain
             let tagcount = args.length
 
-            console.log(site)
-            console.log(args)
-            console.log(count)
-            console.log(args.length)
-            console.log(args.length < 1)
-            console.log(site !== 'danbooru.donmai.us')
-
             if(args.length < 2 || site !== 'danbooru.donmai.us'){
                 let tags = args.slice(0, tagcount)
                 posts = await booru.search(site, tags, { limit: 5, random: true })

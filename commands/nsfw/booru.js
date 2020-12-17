@@ -33,7 +33,7 @@ module.exports = {
         if(command !== 'booru' && command !== 'hentai' && command !== 'h' && command !== 'b' && command !== 'nsfw' && command !== 'sfw') {
             let site = command
 
-            if(args.length >= 2 || site === 'danbooru.donmai.us')
+            if(args.length >= 2 && site === 'danbooru.donmai.us')
                 return message.channel.send('can only search one tag for this site')
 
             let posts = await booru.search(site, args, { limit: 5, random: true })

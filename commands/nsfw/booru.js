@@ -1,6 +1,5 @@
 const booru = require('booru')
 const {prefix} = require('../../config.json')
-const boorus = require('../../data/boorus.json')
 
 module.exports = {
     name: 'booru',

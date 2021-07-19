@@ -27,7 +27,6 @@ module.exports = {
         const command = message.content.slice(prefix.length).split(" ").shift().toLowerCase()
         var post
         var count = 0
-
         
         if(command !== 'booru' && command !== 'hentai' && command !== 'h' && command !== 'b' && command !== 'nsfw' && command !== 'sfw') {
             let site = command
@@ -42,10 +41,7 @@ module.exports = {
         else while(!post){
             var sites
 
-            if(
-                    (command === 'hentai' || command === 'h' || command === 'nsfw') || 
-                    ((command === 'booru' || command === 'b') && args[0] === 'nsfw')
-                ){
+            if((command === 'hentai' || command === 'h' || command === 'nsfw') || ((command === 'booru' || command === 'b') && args[0] === 'nsfw')){
                 sites = boorus['nsfw']
 
                 if(args[0] === 'nsfw')

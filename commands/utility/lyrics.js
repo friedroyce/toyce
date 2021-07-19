@@ -7,7 +7,6 @@ module.exports = {
     category: 'utility',
     aliases: ['lyrics', 'lyric'],
     run: async (bot, message, args) => {
-
         let songName = args.join()
         let {body} = await superagent
             .get(`https://some-random-api.ml/lyrics`)
@@ -22,7 +21,7 @@ module.exports = {
             .setURL(body.links.genius)
             .setDescription(body.lyrics)
             .setFooter(`powered by genius`)
+
         message.channel.send(embed)
-        
     }
 }

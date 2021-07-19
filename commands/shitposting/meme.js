@@ -10,15 +10,16 @@ module.exports = {
         let subreddits = [
             "memes"
         ]
+
         let subreddit = subreddits[Math.floor(Math.random()*(subreddits.length))]
         let img = await imageapi(subreddit)
-        const embed = new discord.MessageEmbed()
-        // .setTitle(`A meme from r/${subreddit}`)
-        // .setURL(`https://www.reddit.com/r/${subreddit}`)
-        .setColor('RANDOM')
-        .setImage(img)
-        message.channel.send(embed)
 
-        //message.channel.send(img)
+        const embed = new discord.MessageEmbed()
+            .setTitle(`source r/${subreddit}`)
+            .setURL(`https://www.reddit.com/r/${subreddit}`)
+            .setColor('RANDOM')
+            .setImage(img)
+        
+        message.channel.send(embed)
     }
 }

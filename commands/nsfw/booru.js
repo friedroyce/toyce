@@ -24,7 +24,6 @@ module.exports = {
         'yande.re', 'yd', 'yand', 'yandere'
     ],
     run: async (bot, message, args) => {
-
         const command = message.content.slice(prefix.length).split(" ").shift().toLowerCase()
         var post
         var count = 0
@@ -41,13 +40,12 @@ module.exports = {
             if(!post) return message.channel.send('no posts found :(')
         }
         else while(!post){
-
-            // var categories
-            // var category
             var sites
 
-            if((command === 'hentai' || command === 'h' || command === 'nsfw')
-                || ((command === 'booru' || command === 'b') && args[0] === 'nsfw')){
+            if(
+                    (command === 'hentai' || command === 'h' || command === 'nsfw') || 
+                    ((command === 'booru' || command === 'b') && args[0] === 'nsfw')
+                ){
                 sites = boorus['nsfw']
 
                 if(args[0] === 'nsfw')
@@ -62,21 +60,25 @@ module.exports = {
             else{
                 let categories = Object.keys(boorus)
                 let category = categories[Math.floor(Math.random()*(categories.length))]
+
                 sites = boorus[category]
             }
+
             let site = sites[Math.floor(Math.random()*(sites.length))].domain
             let tagcount = args.length
 
             if(args.length < 2 || site !== 'danbooru.donmai.us'){
                 let tags = args.slice(0, tagcount)
+
                 posts = await booru.search(site, tags, { limit: 5, random: true })
                 post = posts[Math.floor(Math.random()*(posts.length))]
                 count++
-                if(count > 30) return message.channel.send('no posts found :(')
+
+                if(count > 30)
+                    return message.channel.send('no posts found :(')
             }
 
         }
         message.channel.send(post.fileUrl)
-
     }
 }

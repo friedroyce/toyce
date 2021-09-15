@@ -2,10 +2,10 @@ const discord = require('discord.js')
 const superagent = require('superagent')
 
 module.exports = {
-    name: 'translate',
+    name: 'lyrics',
     description: 'sends lyrics for a song',
     category: 'utility',
-    aliases: ['translate'],
+    aliases: ['ly'],
     run: async (bot, message, args) => {
 
         

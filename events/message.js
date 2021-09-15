@@ -17,6 +17,15 @@ bot.on('message', async (message) => {
 
         if(!command) return 
 
+        if (!message.channel.nsfw && command.category === 'nsfw') {
+            message.react('💢');
+      
+            return message.reply('dis not an NSFW channel')
+            .then(msg => {
+                msg.delete({ timeout: 3000 })
+            })
+        }
+
         try{
             command.run(bot, message, args)
         }

@@ -1,5 +1,5 @@
+require('dotenv').config();
 const discord = require('discord.js')
-const {token} = require('./config.json')
 const events = require('./handlers/event')
 const commands = require('./handlers/command')
 
@@ -8,7 +8,7 @@ bot.commands = new discord.Collection()
 
 events.setup()
 commands.setup(bot)
-bot.login(token)
+bot.login(process.env.TOKEN)
 
 module.exports = {
     bot: bot

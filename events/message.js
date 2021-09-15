@@ -25,9 +25,5 @@ bot.on('message', async (message) => {
             console.log(e)
         }
     }
-    else if (message.content.search('774906241348403211') >= 0){
-        const command = bot.commands.get('chatbot')
-        command.run(bot, message, args)
-    }
 
 })

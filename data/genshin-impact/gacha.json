@@ -1,0 +1,58 @@
+{
+    "pity":{
+        "5": 90,
+        "4": 10
+    },
+    "standard":{
+        "5": {
+            "chance": 0.006
+        },
+        "4": {
+            "chance": 0.051
+        },
+        "3": {
+            "chance": 1
+        }
+    },
+    "character":{
+        "featured":{
+            "5":"Childe",
+            "4":[
+                "Beidou",
+                "Diona",
+                "Ningguang"
+            ]
+        },
+        "5": {
+            "chance": 0.06
+        },
+        "4": {
+            "chance": 0.13
+        },
+        "3": {
+            "chance": 1
+        }
+    },
+    "novice":{
+        "5": {
+            "chance": 0.006
+        },
+        "4": {
+            "chance": 0.051
+        },
+        "3": {
+            "chance": 1
+        }
+    },
+    "weapon":{
+        "5": {
+            "chance": 0.006
+        },
+        "4": {
+            "chance": 0.051
+        },
+        "3": {
+            "chance": 1
+        }
+    }
+}

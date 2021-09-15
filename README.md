@@ -1,4 +1,6 @@
-# toyce-kun
-a discord bot written in javascript that does stuff i wanted it to do
+# toyce
+a personal discord bot written in javascript that does stuff
 
 #### by royce
+
+###### rip original. lost from drive reformat. you will be missed.

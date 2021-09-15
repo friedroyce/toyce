@@ -12,7 +12,7 @@ module.exports = {
         ]
 
         let subreddit = subreddits[Math.floor(Math.random()*(subreddits.length))]
-        let img = await imageapi(subreddit)
+        let img = await imageapi.advanced(subreddit, 'top')
         
         message.channel.send(img)
     }

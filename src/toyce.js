@@ -1,9 +1,9 @@
 require('dotenv').config();
-const discord = require('discord.js')
+const { Client, Intents } = require('discord.js');
 const events = require('./handlers/event')
 const commands = require('./handlers/command')
 
-const bot = new discord.Client()
+const bot = new Client({ intents: [Intents.FLAGS.GUILDS] })
 bot.commands = new discord.Collection()
 
 events.setup()

@@ -1,5 +1,5 @@
 const {bot} = require('../toyce')
-const {prefix} = require('../config.json')
+const {prefix} = require('../data/config.json')
 
 module.exports = {
     name: "message",

@@ -13,13 +13,7 @@ module.exports = {
 
         let subreddit = subreddits[Math.floor(Math.random()*(subreddits.length))]
         let img = await imageapi(subreddit)
-
-        const embed = new discord.MessageEmbed()
-            .setTitle(`source r/${subreddit}`)
-            .setURL(`https://www.reddit.com/r/${subreddit}`)
-            .setColor('RANDOM')
-            .setImage(img)
         
-        message.channel.send(embed)
+        message.channel.send(img)
     }
 }

@@ -4,7 +4,7 @@ const imageapi = require('imageapi.js')
 module.exports = {
     name: 'meme',
     description: 'sends a meme',
-    category: 'shitpost',
+    category: 'fun',
     aliases: ['meme'],
     run: async (bot, message, args) => {
         let subreddits = [

@@ -4,7 +4,7 @@ const {prefix} = require('../../config.json')
 module.exports = {
     name: 'booru',
     description: 'sends an image from booru sites',
-    category: 'nsfw',
+    category: 'fun',
     aliases: [
         'booru', 'b', 'hentai', 'h', 'nsfw', 'sfw',
         'danbooru.donmai.us', 'db', 'dan', 'danbooru',

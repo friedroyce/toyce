@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ping',
     description: 'checks the bots latency',
-    category: 'information',
+    category: 'utility',
     aliases: ['ping', 'kaping', 'ka-ping', 'badaping', 'ba-da-ping', 'bada-ping'],
     run: async (bot, message, args) => {
         var pong = ['pong', 'ka-pong', 'ba-da-pong', 'bada-pong']

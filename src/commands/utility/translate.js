@@ -1,12 +1,13 @@
-const discord = require('discord.js')
-const superagent = require('superagent')
+const { SlashCommandBuilder } = require('@discordjs/builders')
 
 module.exports = {
+	data: new SlashCommandBuilder()
+		.setName('translate')
+		.setDescription('translates a given message'),
     name: 'translate',
-    description: 'sends lyrics for a song',
     category: 'utility',
     aliases: ['translate'],
-    run: async (bot, message, args) => {
+    async execute(client, command) {
 
         
         

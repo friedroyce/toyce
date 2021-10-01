@@ -1,1 +1,1 @@
-Worker: node toyce.js
+Worker: node src/toyce.js

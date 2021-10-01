@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('returns an image from gelbooru.com')
         .addStringOption(option =>
             option.setName('tags')
-                .setDescription('tags needed for specific searches')
+                .setDescription('use spaces to separate tags and underscores for tags  with multiple words. example: \'genshin_impact animated\'')
                 .setRequired(false)),
     category: 'nsfw',
     aliases: ['gelbooru.com', 'gb', 'gel', 'gelbooru'],

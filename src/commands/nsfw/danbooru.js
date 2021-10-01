@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('returns an image from danbooru.donmai.us')
         .addStringOption(option =>
             option.setName('tags')
-                .setDescription('tags needed for specific searches')
+                .setDescription('use spaces to separate tags and underscores for tags  with multiple words. example: \'genshin_impact animated\'')
                 .setRequired(false)),
     category: 'nsfw',
     aliases: ['danbooru.donmai.us', 'db', 'dan', 'danbooru'],

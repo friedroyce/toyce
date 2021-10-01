@@ -5,7 +5,7 @@
   "main": "./src/toyce.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/toyce.js"
+    "start": "node ."
   },
   "engines": {
     "node": "16.x"

@@ -1,10 +1,8 @@
-const {bot} = require('../toyce')
-
-module.exports = {
+module.exports =  {
     name: "ready",
-    description: "when bot is ready"
+    once: true,
+    description: "when bot is ready",
+    async execute(){
+        console.log('toyce is online!')
+    }
 }
-
-bot.once('ready', () => {
-    console.log('toyce is online!')
-})

@@ -1,21 +1,15 @@
 const fs = require('fs')
 
-module.exports.setup = () => {
-
-    fs.readdir('./events', (err, files) => {
-        if(err) console.log(err);
-    
-        const eventfiles = files.filter(file => file.endsWith('.js'))
-    
-        if(eventfiles.length <= 0) return console.log("there are no events to load")
-        
-        console.log(`loading ${eventfiles.length} events`)
-        for(const file of eventfiles){
-            const eventfile = require(`../events/${file}`)
-            
-            console.log(`loaded event '${eventfile.name}'`)
-        }
-    
-    })
-
+module.exports = (client) => {
+    client.loadEvents = async (path) =>{
+        const eventFiles = fs.readdirSync(path).filter(file => file.endsWith('.js'))
+        if(eventFiles.length <= 0) return console.log("there are no events to load")     
+        console.log(`loading events`)
+        eventFiles.forEach(file => {
+            const event = require(`../events/${file}`)
+            if (event.once) client.once(event.name, (...args) => event.execute(...args, client))
+            else client.on(event.name, (...args) => event.execute(...args, client))
+            console.log(`loaded event '${event.name}'`)
+        })
+    }
 }

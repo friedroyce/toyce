@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('searches an image from rule34.xxx')
         .addStringOption(option =>
             option.setName('tags')
-                .setDescription('use spaces to separate tags and underscores for tags  with multiple words. example: \'genshin_impact animated\'')
+                .setDescription('use spaces to separate tags and underscores for multiple words. example: \'genshin_impact animated\'')
                 .setRequired(false)),
     category: 'nsfw',
     aliases: ['rule34.xxx', 'r34', 'rule34'],

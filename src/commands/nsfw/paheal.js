@@ -7,7 +7,7 @@ module.exports = {
         .setDescription('returns an image from rule34.paheal.net')
         .addStringOption(option =>
             option.setName('tags')
-                .setDescription('use spaces to separate tags and underscores for tags  with multiple words. example: \'genshin_impact animated\'')
+                .setDescription('use spaces to separate tags and underscores for multiple words. example: \'genshin_impact animated\'')
                 .setRequired(false)),
     category: 'nsfw',
     aliases: ['rule34.paheal.net', 'pa', 'paheal'],

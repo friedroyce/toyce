@@ -1,15 +1,13 @@
-require('dotenv').config();
-const { Client, Intents } = require('discord.js');
-const events = require('./handlers/event')
-const commands = require('./handlers/command')
+require('dotenv').config()
+const fs = require('fs')
+const { Client, Intents, Collection } = require('discord.js')
+const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'))
+const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] })
+client.commands = new Collection();
 
-const bot = new Client({ intents: [Intents.FLAGS.GUILDS] })
-bot.commands = new discord.Collection()
-
-events.setup()
-commands.setup(bot)
-bot.login(process.env.TOKEN)
-
-module.exports = {
-    bot: bot
-}
+(async () => {
+    handlers.forEach(handler => { require(`./handlers/${handler}`)(client) })
+    client.loadEvents('./src/events')
+    client.loadCommands('./src/commands')
+    client.login(process.env.token)
+})()

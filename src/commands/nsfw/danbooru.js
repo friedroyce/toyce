@@ -1,22 +1,26 @@
 const Booru = require('booru')
+const { SlashCommandBuilder } = require('@discordjs/builders')
 
 module.exports = {
-    name: 'danbooru',
-    description: 'returns an image from danbooru.donmai.us',
+    data: new SlashCommandBuilder()
+        .setName('danbooru')
+        .setDescription('returns an image from danbooru.donmai.us')
+        .addStringOption(option =>
+            option.setName('tags')
+                .setDescription('tags needed for specific searches')
+                .setRequired(false)),
     category: 'nsfw',
-    aliases: [
-        'danbooru.donmai.us', 'db', 'dan', 'danbooru'
-    ],
-    run: async (bot, message, args) => {
-        let tags = args
-
-        if(tags.length > 1) return message.channel.send('can only use 1 tag for danbooru')
-
+    aliases: ['danbooru.donmai.us', 'db', 'dan', 'danbooru'],
+    async execute(client, command) {
+        let tags = (command.slash) ? command.options.getString('tags') : command.args
+        let reply = await this.process(tags)
+        if(command.slash) await command.interaction.reply({ content: reply, ephemeral: false });
+        else command.message.channel.send(reply)
+    },
+    async process(tags){
         let posts = await Booru.search('dan', tags, { limit: 100, random: true })
-        let post = posts[Math.floor(Math.random()*(posts.length))]
-
-        if(!post) return message.channel.send('no posts found :(')
-
-        message.channel.send(post.fileUrl)
+        let post = posts[Math.floor(Math.random() * (posts.length))]
+        if (!post) return 'no posts found :('
+        else return post.fileUrl
     }
 }

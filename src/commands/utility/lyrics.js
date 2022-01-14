@@ -1,29 +1,47 @@
-const discord = require('discord.js')
+const Discord = require('discord.js')
 const superagent = require('superagent')
 const { SlashCommandBuilder } = require('@discordjs/builders')
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('lyrics')
-        .setDescription('sends lyrics for a song'),
+        .setDescription('sends lyrics for a song')
+        .addStringOption(option =>
+            option.setName('title')
+                .setDescription('song title')
+                .setRequired(true)),
     category: 'utility',
     aliases: ['lyrics', 'lyric'],
     async execute(client, command) {
-        // let songName = args.join()
-        // let { body } = await superagent
-        //     .get(`https://some-random-api.ml/lyrics`)
-        //     .query({ title: songName })
+        let songName = (command.slash) ? command.options.getString('title') : command.args.join()
 
-        // if (body.lyrics.length > 2048)
-        //     return message.channel.send(`song lyrics exceeds 2048 characters`)
+        if(!songName) {
+            command.message.channel.send("please input a song title")
+            return;
+        }
 
-        // const embed = new discord.MessageEmbed()
-        //     .setColor('RANDOM')
-        //     .setTitle(body.title)
-        //     .setURL(body.links.genius)
-        //     .setDescription(body.lyrics)
-        //     .setFooter(`powered by genius`)
+        try{
+            let { body } = await superagent
+            .get(`https://some-random-api.ml/lyrics`)
+            .query({ title: songName })
 
-        // message.channel.send(embed)
+            if (body.lyrics.length > 2048)
+                if(command.slash) return await command.interaction.reply({ content: 'song lyrics exceeds 2048 characters', ephemeral: false });
+                else return command.message.channel.send('song lyrics exceeds 2048 characters')
+
+            const embed = new Discord.MessageEmbed()
+                .setColor('RANDOM')
+                .setTitle(body.title)
+                .setURL(body.links.genius)
+                .setDescription(body.lyrics)
+                .setFooter(`powered by genius`)
+
+            if(command.slash) await command.interaction.reply({ content: embed, ephemeral: false });
+            else command.message.channel.send({embeds: [embed]})
+        }
+        catch(err){
+            if(command.slash) await command.interaction.reply({ content: "couldnt find the songs lyrics", ephemeral: false });
+            else command.message.channel.send("couldnt find the songs lyrics")
+        }
     }
 }

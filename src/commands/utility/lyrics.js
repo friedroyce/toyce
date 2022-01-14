@@ -37,7 +37,7 @@ module.exports = {
                 .setDescription(body.lyrics)
                 .setFooter(`powered by genius`)
 
-            if(command.slash) await command.interaction.reply({ content: embed, ephemeral: false });
+            if(command.slash) await command.interaction.reply({ embeds: [embed], ephemeral: false });
             else command.message.channel.send({embeds: [embed]})
         }
         catch(err){

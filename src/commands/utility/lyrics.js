@@ -16,7 +16,8 @@ module.exports = {
         let songName = (command.slash) ? command.options.getString('title') : command.args.join()
 
         if(!songName) {
-            command.message.channel.send("please input a song title")
+            if(command.slash) await command.interaction.reply({ content: "please input a song title", ephemeral: false });
+            else command.message.channel.send("please input a song title")
             return;
         }
 

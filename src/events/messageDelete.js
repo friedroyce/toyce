@@ -5,7 +5,7 @@ module.exports = {
     async execute(message, client){
         if (message.partial || (message.embeds.length && !message.content)) return; // content is null or deleted embed
 
-        client.snipes[message.channel.id] = {
+        client.snipes[message.channel.id][message.id] = {
             author: message.author,
             content: message.content,
             createdAt: message.createdTimestamp,

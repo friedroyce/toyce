@@ -26,9 +26,9 @@ module.exports = {
             .get(`https://some-random-api.ml/lyrics`)
             .query({ title: songName })
 
-            if (body.lyrics.length > 2048)
-                if(command.slash) return await command.interaction.reply({ content: 'song lyrics exceeds 2048 characters', ephemeral: false });
-                else return command.message.channel.send('song lyrics exceeds 2048 characters')
+            if (body.lyrics.length > 4096)
+                if(command.slash) return await command.interaction.reply({ content: 'song lyrics exceeds 4096 characters', ephemeral: false });
+                else return command.message.channel.send('song lyrics exceeds 4096 characters')
 
             const embed = new Discord.MessageEmbed()
                 .setColor('RANDOM')

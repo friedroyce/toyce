@@ -11,5 +11,5 @@ client.snipes = {};
     handlers.forEach(handler => { require(`./handlers/${handler}`)(client) })
     client.loadEvents('./src/events')
     client.loadCommands('./src/commands')
-    client.login(process.env.token)
+    client.login(process.env.TOKEN)
 })()

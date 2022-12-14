@@ -74,4 +74,6 @@ typings/
 
 # FuseBox cache
 .fusebox/
+
+#visual studio configs
 /.vs

@@ -16,7 +16,7 @@ module.exports = {
 
         if (!reason) reason = "for no reason. that's sus";
 
-        const kickEmbed = new Discord.MessageEmbed()
+        const kickEmbed = new Discord.EmbedBuilder()
             .setTitle(`you just got yeeted from ${message.guild.name}`)
             .setDescription(`Reason: ${reason}`)
             .setColor(colour)

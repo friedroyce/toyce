@@ -30,7 +30,7 @@ module.exports = {
                 if(command.slash) return await command.interaction.reply({ content: 'song lyrics exceeds 4096 characters', ephemeral: false });
                 else return command.message.channel.send('song lyrics exceeds 4096 characters')
 
-            const embed = new Discord.MessageEmbed()
+            const embed = new Discord.EmbedBuilder()
                 .setColor('RANDOM')
                 .setTitle(body.title)
                 .setURL(body.links.genius)

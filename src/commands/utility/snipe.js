@@ -16,10 +16,7 @@ module.exports = {
 
 		const channel = (command.slash) ? command.interaction.options.getChannel("channel") || command.interaction.channel : command.message.channel;
 
-		console.log(channel.id)
-
 		const snipe = client.snipes[channel.id];
-		console.log(snipe)
 
 		if (!snipe) 
 			if (command.slash)

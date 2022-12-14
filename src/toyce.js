@@ -1,8 +1,16 @@
 require('dotenv').config()
 const fs = require('fs')
-const { Client, Intents, Collection } = require('discord.js')
+const { Client, GatewayIntentBits , Collection } = require('discord.js')
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'))
-const client = new Client({ intents: ["GUILDS", "GUILD_MESSAGES", "DIRECT_MESSAGES"], partials: ["CHANNEL"] })
+const client = new Client({ 
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.DirectMessages
+    ], 
+    partials: ["CHANNEL"] })
 
 client.commands = new Collection();
 client.snipes = {};
@@ -11,5 +19,5 @@ client.snipes = {};
     handlers.forEach(handler => { require(`./handlers/${handler}`)(client) })
     client.loadEvents('./src/events')
     client.loadCommands('./src/commands')
-    client.login(process.env.TOKEN)
+    client.login(process.env.token)
 })()

@@ -25,7 +25,7 @@ module.exports = {
                 command.execute(client, {message: message, args: args})
             }
             catch(e){
-                message.channel.send("an error occured executing the command")
+                message.channel.send("oh no! there was an oopsie!")
                 console.log(e)
             }
         }

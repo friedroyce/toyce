@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders')
 
 
@@ -27,9 +27,9 @@ module.exports = {
 			else
 				return command.message.channel.send("There's nothing to snipe!")
 
-		const embed = new MessageEmbed()
-			.setAuthor(snipe.author.tag)
-			.setFooter(`#${channel.name}`)
+		const embed = new EmbedBuilder()
+			.setAuthor({ name: snipe.author.tag, iconURL: snipe.author.avatarURL() })
+			.setFooter({ text: `#${channel.name}` })
 			.setTimestamp(snipe.createdAt);
 		snipe.content ? embed.setDescription(snipe.content) : null;
 		snipe.image ? embed.setImage(snipe.image) : null;

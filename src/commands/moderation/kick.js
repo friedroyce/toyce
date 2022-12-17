@@ -8,7 +8,7 @@ module.exports = {
         .setDescription('yeets a user from the server'),
     category: 'moderation',
     aliases: ['kick', 'kik', 'yeet'],
-    run: async (client, message, args) => {
+    async execute (client, message, args) {
         if (!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send("You cannot use this command");
 
         const mentionedMember = message.mentions.members.first();

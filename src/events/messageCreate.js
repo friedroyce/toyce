@@ -1,10 +1,22 @@
 const {prefix} = require('../data/config.json')
+const chat = require('../openai/chat')
 
 module.exports = {
     name: 'messageCreate',
     async execute(message, client){
         const args = message.content.slice(prefix.length).split(" ")
-    
+
+        if(message.content.includes(`<@${client.user.id}>`) || message.content.includes(`<@!${client.user.id}>`)){
+            args.shift()
+            var text = args.join()
+            if(text === "") return
+
+            message.channel.sendTyping();
+            var reply = await chat.execute(text)
+            message.channel.send({ content: reply })
+            return
+        }
+            
         if(message.content.startsWith(prefix) && !message.author.bot) {
             const cmdName = args.shift().toLowerCase()
             const command = client.commands.get(cmdName)

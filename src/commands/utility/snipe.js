@@ -5,11 +5,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders')
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('snipe')
-		.setDescription('snipes deleted message')
-        .addStringOption(option =>
-            option.setName('id')
-                .setDescription('id of the sht u wanna recover')
-                .setRequired(false)),
+		.setDescription('snipes deleted message'),
 	category: 'utility',
 	aliases: ['snipe'],
 	async execute(client, command) {

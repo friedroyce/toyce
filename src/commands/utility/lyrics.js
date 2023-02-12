@@ -31,16 +31,16 @@ module.exports = {
                 else return command.message.channel.send('song lyrics exceeds 4096 characters')
 
             const embed = new Discord.EmbedBuilder()
-                .setColor('RANDOM')
                 .setTitle(body.title)
                 .setURL(body.links.genius)
                 .setDescription(body.lyrics)
-                .setFooter(`powered by genius`)
+                .setFooter({ text: `powered by genius`})
 
             if(command.slash) await command.interaction.reply({ embeds: [embed], ephemeral: false });
             else command.message.channel.send({embeds: [embed]})
         }
         catch(err){
+            console.log(err)
             if(command.slash) await command.interaction.reply({ content: "couldnt find the songs lyrics", ephemeral: false });
             else command.message.channel.send("couldnt find the songs lyrics")
         }
